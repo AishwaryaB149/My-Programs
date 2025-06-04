@@ -85,3 +85,80 @@ class Multiply
 }
 
 
+
+//In an array of numbers just sort the even numbers in the array and donot change the position of odd numbers
+import java.util.*;
+class OddStableSort
+{
+	public static void main(String[] args)
+	{
+		int evenCounter=0;		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the n value: ");
+		int n=sc.nextInt();
+		int[] arr=new int[n];
+		System.out.println("Enter "+n+" numbers: ");
+		for(int i=0;i<n;i++)
+		{
+			arr[i]=sc.nextInt();
+			if(arr[i]%2==0)
+			{
+				evenCounter++;
+		      }
+		}
+		int [] b=new int[evenCounter];
+		int j=0;
+		for(int i=0;i<n;i++)
+		{
+			if(arr[i]%2==0)
+			{
+				b[j]=arr[i];
+				j++;
+			}
+		}
+		Arrays.sort(b);
+		j=0;
+		System.out.println("Result= ");
+		for(int i=0;i<n;i++)
+		{
+			if(arr[i]%2==0)
+			{
+				arr[i]=b[j];
+				j++;
+			}
+		      System.out.printf("%4d",arr[i]);
+		}
+	}
+}
+//another approach
+
+import java.util.*;
+class OddStableSort
+{
+	public void sortEvenNumbersOnly(int[] arr)
+	{
+		int[] evens=Arrays.stream(arr).filter(x -> x%2==0).sorted().toArray();
+	      int j=0;
+		for(int i=0;i<arr.length;i++)
+		{
+			if(arr[i]%2==0)
+			{
+				arr[i]=evens[j++];
+			}
+		}	 
+	}
+	public static void main(String[] args)
+	{
+		OddStableSort obj=new OddStableSort();
+		int[] arr={25,34,28,44,9,27,13,6};
+		System.out.println("Original array: "+Arrays.toString(arr));
+		obj.sortEvenNumbersOnly(arr);
+		System.out.println("Sorting even numbers: "+Arrays.toString(arr));
+	}
+
+}
+
+
+
+
+
